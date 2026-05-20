@@ -157,13 +157,14 @@ const Home = () => {
             <h2 className="text-[#1F2F28] text-3xl md:text-4xl font-serif font-semibold">
               Popular Authors
             </h2>
-            <a
-              href="#"
+            <button
+              type="button"
+              onClick={() => navigate("/authors")}
               className="flex items-center gap-1.5 text-[#1F2F28] text-sm font-medium hover:opacity-70 transition-opacity"
             >
               View all
               <Icon.arrowRight />
-            </a>
+            </button>
           </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-6">

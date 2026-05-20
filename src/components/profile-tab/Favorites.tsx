@@ -120,7 +120,7 @@ const Favorites = () => {
               collection.
             </p>
             <button
-              type="button"
+              type="button" 
               onClick={() => navigate("/books")}
               className="px-8 py-3 bg-[#2F5A3F] text-white font-medium rounded-lg hover:bg-[#1E3F2A] transition-colors"
             >
@@ -133,4 +133,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default Favorites; 

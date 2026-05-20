@@ -1,15 +1,26 @@
-import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
+import { useQuery } from "@tanstack/react-query";
+import { instance } from "../../lib/axios";
 
 export const useGetProfile = () => {
-    const onGetProfile = async () => await axios.get("http://localhost:3001/api/auth/profile",{
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-        }
-    })
-    const {data,isSuccess,isError} = useQuery({
-        queryKey: ["profile"],
-        queryFn: async () => onGetProfile()
-    })
-    return { data,isSuccess,isError}
-}
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
+
+  const getProfile = async () => {
+    if (!token) return null;
+    const response = await instance.get("/users/profile", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data?.data ?? response.data;
+  };
+
+  const { data, isSuccess, isError } = useQuery({
+    queryKey: ["profile", token],
+    queryFn: getProfile,
+    retry: false,
+    enabled: !!token,
+  });
+
+  return { data, isSuccess, isError };
+};

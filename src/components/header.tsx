@@ -98,10 +98,14 @@ const Header = () => {
                     className="flex items-center gap-x-2 bg-[#FBF7F0] rounded-full p-[6px_16px_6px_6px] cursor-pointer"
                   >
                     <span className="w-9 h-9 rounded-full bg-[#D9E5DC] flex items-center justify-center text-[#1F2F28] font-semibold text-base">
-                      {userStore.user?.fullName[0]}
+                      {userStore.user?.fullName?.[0] ??
+                        userStore.user?.username?.[0] ??
+                        "U"}
                     </span>
                     <span className="text-base text-[#1F2F28]">
-                      {userStore.user?.fullName}
+                      {userStore.user?.fullName ??
+                        userStore.user?.username ??
+                        "User"}
                     </span>
                     <span
                       className={`transition-transform ${

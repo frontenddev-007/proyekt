@@ -4,21 +4,15 @@ import { Outlet } from "react-router-dom";
 import { useGetProfile } from "../../hooks/api/useGetProfile";
 import { useEffect } from "react";
 import { useUserStore } from "../../store/user.store";
-import { toast } from "react-toastify";
 const RootLayout = () => {
-  const {data,isSuccess,isError} = useGetProfile()
-  const userStore = useUserStore()
+  const { data, isSuccess } = useGetProfile();
+  const setUser = useUserStore((state) => state.setUser);
+
   useEffect(() => {
-    if(isSuccess){
-      const user = data?.data
-      userStore.setUser(user)
+    if (isSuccess && data) {
+      setUser(data);
     }
-  },[isSuccess])
-  useEffect(() => {
-    if(isError){
-      toast.error("something went wrong!!!")
-    }
-  },[isError])
+  }, [isSuccess, data, setUser]);
   return (
     <>
       <Header />

@@ -2,7 +2,7 @@ import { useState, type JSX } from "react";
 import ChangePassword from "../components/profile-tab/ChangePassword";
 import EditProfile from "../components/profile-tab/EditProfile";
 import Favorites from "../components/profile-tab/Favorites";
-
+import { useUserStore } from "../store/user.store";
 import MyBooks from "../components/profile-tab/MyBooks";
 import Overview from "../components/profile-tab/Overview";
 
@@ -118,7 +118,11 @@ function MainContent({ activeSection }: { activeSection: SectionId }) {
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState<SectionId>("overview");
-  const username = "Zayniddin";
+  const user = useUserStore((state) => state.user);
+  const username = user?.username ?? "Guest";
+  const memberSince = user
+    ? new Date(user.createdAt).getFullYear().toString()
+    : "2024";
 
   return (
     <div className="min-h-screen bg-stone-50 font-sans">
@@ -127,7 +131,7 @@ const Profile = () => {
           activeSection={activeSection}
           onSectionChange={setActiveSection}
           username={username}
-          memberSince="2024"
+          memberSince={memberSince}
         />
         <MainContent activeSection={activeSection} />
       </div>

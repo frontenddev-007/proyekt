@@ -5,19 +5,18 @@ export interface IUser {
   phone_number: string;
 }
 
-
 export interface IUserResponse {
-    "id": string,
-    "fullName": string,
-    "username": string,
-    "email": string,
-    "bio": string,
-    "phone": string,
-    "country": string,
-    "avatar": null,
-    "role": "admin" | "user",
-    "createdAt": string,
-    "updatedAt": string
+  id: string;
+  fullName: string;
+  username: string;
+  email: string;
+  bio: string;
+  phone: string;
+  country: string;
+  avatar: string | null;
+  role: "admin" | "user";
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IUserStore {
