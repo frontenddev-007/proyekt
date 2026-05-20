@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Icon from "../components/ui/icon";
 import { useGetBooks } from "../hooks/api/useGetBooks";
 import { useFavorites } from "../hooks/useFavorites";
@@ -52,6 +53,8 @@ const BooksPage = () => {
     "newest" | "oldest" | "price_asc" | "price_desc" | "rating" | "popularity"
   >("newest");
   const { toggleFavorite, isFavorite } = useFavorites();
+
+  const navigate = useNavigate();
 
   const {
     books: apiBooks,
@@ -326,7 +329,11 @@ const BooksPage = () => {
             ) : (
               <div className="grid grid-cols-4 gap-6 mb-8">
                 {displayedBooks.map((book: any) => (
-                  <div key={book.id} className="flex flex-col">
+                  <div
+                    key={book.id}
+                    className="flex flex-col cursor-pointer"
+                    onClick={() => navigate(`/books/${book.id}`)}
+                  >
                     <div className="relative aspect-3/4 rounded-2xl bg-linear-to-br from-[#2F5A3F] to-[#1E3F2A] p-5 flex flex-col items-center justify-center text-center overflow-hidden group mb-4">
                       <img
                         src={book.image}
@@ -336,7 +343,10 @@ const BooksPage = () => {
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all" />
 
                       <button
-                        onClick={() => toggleFavorite(book.id)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleFavorite(book.id);
+                        }}
                         className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors"
                       >
                         {book.isFavorite ? (

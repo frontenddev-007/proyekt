@@ -83,7 +83,7 @@ function Sidebar({
   memberSince: string;
 }) {
   return (
-    <aside className="w-56 shrink-0 bg-white border-r border-gray-100 min-h-screen hidden md:flex flex-col">
+    <aside className="w-56 shrink-0 bg-[var(--surface)] border-r border-[var(--border)] min-h-screen hidden md:flex flex-col">
       <SidebarUserCard username={username} memberSince={memberSince} />
       <nav className="flex flex-col gap-1 p-3 pt-4">
         {NAV_ITEMS.map((item) => (
@@ -125,7 +125,7 @@ const Profile = () => {
     : "2024";
 
   return (
-    <div className="min-h-screen bg-stone-50 font-sans">
+    <div className="min-h-screen bg-[var(--bg)] font-sans">
       <div className="flex">
         <Sidebar
           activeSection={activeSection}

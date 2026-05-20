@@ -2,13 +2,164 @@
 @import "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
 
+:root {
+  color-scheme: light;
+  --bg: #f8faf5;
+  --surface: #ffffff;
+  --surface-strong: #fbf7f0;
+  --surface-alt: #f1f3ee;
+  --border: #e6e0d7;
+  --text: #1f2f28;
+  --muted: #6b6b6b;
+  --muted-2: #9aa89f;
+  --accent: #1f2f28;
+  --card-shadow: 0 20px 80px rgba(31, 47, 40, 0.08);
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #0f1812;
+  --surface: #15261f;
+  --surface-strong: #1d2d24;
+  --surface-alt: #172e26;
+  --border: #22382f;
+  --text: #ebf3e8;
+  --muted: #9aa89f;
+  --muted-2: #7a8f7c;
+  --accent: #f8f7f0;
+  --card-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+}
+
 * {
   font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  color: inherit;
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 15px;
+}
+
+.bg-surface {
+  background-color: var(--surface) !important;
+}
+
+.bg-surface-strong {
+  background-color: var(--surface-strong) !important;
+}
+
+.bg-surface-alt {
+  background-color: var(--surface-alt) !important;
+}
+
+.text-primary {
+  color: var(--text) !important;
+}
+
+.text-muted {
+  color: var(--muted) !important;
+}
+
+.text-muted-2 {
+  color: var(--muted-2) !important;
+}
+
+.border-surface {
+  border-color: var(--border) !important;
+}
+
+.shadow-card {
+  box-shadow: var(--card-shadow) !important;
+}
+
+.dark .bg-white {
+  background-color: var(--surface) !important;
+}
+
+.dark .bg-\[\#F8FAF5\] {
+  background-color: var(--bg) !important;
+}
+
+.dark .bg-\[\#FBF7F0\] {
+  background-color: var(--surface-strong) !important;
+}
+
+.dark .bg-\[\#F8F8F7\] {
+  background-color: var(--surface-alt) !important;
+}
+
+.dark .bg-\[\#FFF1F0\] {
+  background-color: #2b1c1c !important;
+}
+
+.dark .text-\[\#1F2F28\] {
+  color: var(--text) !important;
+}
+
+.dark .text-\[\#6B6B6B\] {
+  color: var(--muted) !important;
+}
+
+.dark .text-\[\#9AA89F\] {
+  color: var(--muted-2) !important;
+}
+
+.dark .text-\[\#7A7A7A\] {
+  color: var(--muted) !important;
+}
+
+.dark .text-\[\#4A4A4A\] {
+  color: var(--muted) !important;
+}
+
+.dark .text-\[\#FBF7F0\] {
+  color: #f8f7f0 !important;
+}
+
+.dark .border-\[\#E6E0D7\],
+.dark .border-\[\#D9D9D9\],
+.dark .border-\[\#B4B4BB\],
+.dark .border-gray-100,
+.dark .border-\[\#D8D8D8\] {
+  border-color: var(--border) !important;
+}
+
+.dark .hover\:bg-white\/5:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .bg-\[\#FBF7F0\] {
+  background-color: var(--surface-strong) !important;
+}
+
+.dark .bg-\[\#E8DFD0\] {
+  background-color: #25382f !important;
+}
+
+.dark .text-\[\#2F5A3F\] {
+  color: #b6d0b7 !important;
 }

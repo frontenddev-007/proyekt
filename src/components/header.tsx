@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Icon from "./ui/icon";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../store/user.store";
+import { useThemeStore } from "../store/theme.store";
 import { removeItem } from "../utils/localstorage";
 
 const Header = () => {
@@ -22,6 +23,9 @@ const Header = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const theme = useThemeStore((state) => state.theme);
+  const toggleTheme = useThemeStore((state) => state.toggleTheme);
 
   const confirmLogout = () => {
     setShowLogoutConfirm(false);
@@ -44,11 +48,11 @@ const Header = () => {
               <Icon.logo />
             </Link>
             <form className="max-w-95 w-full">
-              <label className="bg-[#FBF7F0] p-[12px_20px] rounded-[40px] flex items-center gap-3 w-full shadow-md">
+              <label className="bg-[var(--surface)] p-[12px_20px] rounded-[40px] flex items-center gap-3 w-full shadow-md border border-[var(--border)]">
                 <Icon.searchIcon />
                 <input
                   type="text"
-                  className="w-full text-base text-[#1F2F28] placeholder:text-[#7A7A7A] bg-transparent focus:outline-0"
+                  className="w-full text-base text-[var(--text)] placeholder:text-[var(--muted)] bg-transparent focus:outline-0"
                   placeholder="Search books, authors, genres..."
                 />
               </label>
@@ -58,7 +62,7 @@ const Header = () => {
                 <li>
                   <Link
                     to={"/books"}
-                    className="text-[#1F2F28] hover:text-[#2A3D33] transition-colors"
+                    className="text-[var(--text)] hover:text-[var(--accent)] transition-colors"
                   >
                     Books
                   </Link>
@@ -66,7 +70,7 @@ const Header = () => {
                 <li>
                   <Link
                     to={"/authors"}
-                    className="text-[#1F2F28] hover:text-[#2A3D33] transition-colors"
+                    className="text-[var(--text)] hover:text-[var(--accent)] transition-colors"
                   >
                     Authors
                   </Link>
@@ -74,7 +78,7 @@ const Header = () => {
                 <li>
                   <Link
                     to={"/favorites"}
-                    className="text-[#1F2F28] hover:text-[#2A3D33] transition-colors"
+                    className="text-[var(--text)] hover:text-[var(--accent)] transition-colors"
                   >
                     Favorites
                   </Link>
@@ -83,6 +87,13 @@ const Header = () => {
             </nav>
             {userStore.user ? (
               <div className="flex items-center gap-x-5 ml-auto">
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  className="rounded-full border border-[#D9D9D9] bg-[var(--surface)] p-2 text-[var(--text)] hover:bg-[var(--surface-strong)] transition-colors"
+                >
+                  {theme === "dark" ? <Icon.sun /> : <Icon.moon />}
+                </button>
                 <button type="button" className="relative cursor-pointer">
                   <Icon.cart />
                   <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#FF3B30]"></span>

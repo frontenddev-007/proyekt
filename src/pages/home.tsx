@@ -100,7 +100,11 @@ const Home = () => {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
             {books.map((book) => (
-              <div key={book.id} className="flex flex-col">
+              <div
+                key={book.id}
+                className="flex flex-col cursor-pointer"
+                onClick={() => navigate(`/books/${book.id}`)}
+              >
                 <div
                   className={`relative aspect-3/4 rounded-2xl bg-linear-to-br ${book.gradient} p-5 flex flex-col items-center justify-center text-center overflow-hidden`}
                 >
@@ -111,7 +115,10 @@ const Home = () => {
                         ? "Remove from favorites"
                         : "Add to favorites"
                     }
-                    onClick={() => toggleFavorite(String(book.id))}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(String(book.id));
+                    }}
                     className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 hover:bg-white transition-colors flex items-center justify-center cursor-pointer"
                   >
                     {book.favorite ? (

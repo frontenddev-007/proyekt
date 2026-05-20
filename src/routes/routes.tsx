@@ -9,8 +9,10 @@ import ProtectedRoute from "./protected-route";
 import Books from "../pages/Books";
 import Authors from "../pages/Authors";
 import AuthorDetail from "../pages/AuthorDetail";
+import BookDetail from "../pages/BookDetail";
 import Favorites from "../components/profile-tab/Favorites";
 import AddBook from "../pages/AddBook";
+import Settings from "../pages/Settings";
 export const routes = createBrowserRouter([
   {
     element: <RootLayout />,
@@ -26,7 +28,9 @@ export const routes = createBrowserRouter([
         path: "/profile",
         element: <Profile />,
       },
+      { path: "settings", element: <Settings /> },
       { path: "books", element: <Books /> },
+      { path: "books/:id", element: <BookDetail /> },
       { path: "authors", element: <Authors /> },
       { path: "authors/:id", element: <AuthorDetail /> },
       { path: "favorites", element: <Favorites /> },

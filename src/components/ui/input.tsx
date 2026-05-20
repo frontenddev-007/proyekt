@@ -7,7 +7,7 @@ interface Props {
   label: string;
 }
 
-const Input = ({ type, name, placeholder, label, form,required }: Props) => {
+const Input = ({ type, name, placeholder, label, form, required }: Props) => {
   return (
     <label htmlFor="" className="text-[#4A4A4A]">
       {label}
@@ -15,7 +15,7 @@ const Input = ({ type, name, placeholder, label, form,required }: Props) => {
         required={required}
         {...form.register(name)}
         placeholder={placeholder}
-        className="w-full mt-1.5 bg-white p-[13px_0px_10px_29px] focus:outline-none rounded-[10px] border border-[#B4B4BB]"
+        className="w-full mt-1.5 bg-[var(--surface)] p-[13px_0px_10px_29px] focus:outline-none rounded-[10px] border border-[var(--border)] text-[var(--text)]"
         type={type}
       />
     </label>

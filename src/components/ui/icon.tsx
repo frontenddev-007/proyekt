@@ -212,6 +212,82 @@ const Icon = {
       />
     </svg>
   ),
+  sun: () => (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="9" cy="9" r="4" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M9 1V3"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M9 15V17"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M1 9H3"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M15 9H17"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M3.5 3.5L5 5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M13 13L14.5 14.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M3.5 14.5L5 13"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M13 5L14.5 3.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  ),
+  moon: () => (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12.5 2.5C11.111 3.141 10.048 4.474 9.84097 6.052C9.63397 7.63003 10.329 9.185 11.6809 10.1889C13.0329 11.1929 14.7823 11.4275 16.3565 10.8211C16.5364 10.7429 16.7247 10.8242 16.8067 10.9999C17.1207 11.7119 17.2888 12.4864 17.2888 13.2784C17.2888 15.9874 14.8054 18.4708 12.0964 18.4708C10.6917 18.4708 9.3637 17.906 8.3617 16.9949C7.35969 16.0838 6.74718 14.9075 6.7031 13.6515C6.65903 12.3955 7.18456 11.1982 8.1606 10.3042C9.13663 9.41018 10.4585 8.8991 11.8585 8.88928C13.2585 8.87945 14.5645 9.36936 15.5389 10.262C16.5132 11.1547 17.0587 12.3693 17.0753 13.6525C17.0918 14.9357 16.5783 16.1661 15.6495 17.049C14.7207 17.9318 13.4673 18.3963 12.1839 18.3244C10.9006 18.2526 9.70216 17.6477 8.8543 16.637C8.00643 15.6263 7.59715 14.314 7.71605 12.995C7.83495 11.676 8.47793 10.4533 9.55688 9.61613C10.6358 8.77888 12.0447 8.38947 13.3867 8.51479"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
   grid: () => (
     <svg
       width="20"
