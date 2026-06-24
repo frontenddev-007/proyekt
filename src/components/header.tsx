@@ -7,6 +7,7 @@ import { removeItem } from "../utils/localstorage";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const userStore = useUserStore();
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -40,14 +41,24 @@ const Header = () => {
 
   return (
     <>
-      <header className="pt-3.5">
-        <div className="container">
-          <div className="flex items-center gap-x-6">
-            <Link to="/" className="flex items-center gap-2">
-              <Icon.leaf />
-              <Icon.logo />
-            </Link>
-            <form className="max-w-95 w-full">
+      <header className="pt-3.5 sticky top-0 z-40 bg-[var(--bg)]/95 backdrop-blur">
+        <div className="container py-2">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-6">
+            <div className="flex items-center justify-between gap-3">
+              <Link to="/" className="flex items-center gap-2 shrink-0">
+                <Icon.leaf />
+                <Icon.logo />
+              </Link>
+              <button
+                type="button"
+                className="rounded-full border border-[var(--border)] p-2 text-[var(--text)] lg:hidden"
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              >
+                <Icon.searchIcon />
+              </button>
+            </div>
+
+            <form className="w-full lg:max-w-[360px] lg:flex-1">
               <label className="bg-[var(--surface)] p-[12px_20px] rounded-[40px] flex items-center gap-3 w-full shadow-md border border-[var(--border)]">
                 <Icon.searchIcon />
                 <input
@@ -57,7 +68,8 @@ const Header = () => {
                 />
               </label>
             </form>
-            <nav>
+
+            <nav className="hidden lg:block">
               <ul className="flex gap-x-6 text-sm font-medium">
                 <li>
                   <Link
@@ -85,8 +97,9 @@ const Header = () => {
                 </li>
               </ul>
             </nav>
+
             {userStore.user ? (
-              <div className="flex items-center gap-x-5 ml-auto">
+              <div className="flex flex-wrap items-center justify-end gap-2 sm:gap-3 ml-auto">
                 <button
                   type="button"
                   onClick={toggleTheme}
@@ -94,11 +107,17 @@ const Header = () => {
                 >
                   {theme === "dark" ? <Icon.sun /> : <Icon.moon />}
                 </button>
-                <button type="button" className="relative cursor-pointer">
+                <button
+                  type="button"
+                  className="relative cursor-pointer hidden sm:block"
+                >
                   <Icon.cart />
                   <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#FF3B30]"></span>
                 </button>
-                <button type="button" className="relative cursor-pointer">
+                <button
+                  type="button"
+                  className="relative cursor-pointer hidden sm:block"
+                >
                   <Icon.bell />
                   <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#FF3B30]"></span>
                 </button>
@@ -106,14 +125,14 @@ const Header = () => {
                   <button
                     type="button"
                     onClick={() => setIsOpen((prev) => !prev)}
-                    className="flex items-center gap-x-2 bg-[#FBF7F0] rounded-full p-[6px_16px_6px_6px] cursor-pointer"
+                    className="flex items-center gap-x-2 bg-[#FBF7F0] rounded-full p-[6px_10px_6px_6px] sm:p-[6px_16px_6px_6px] cursor-pointer"
                   >
                     <span className="w-9 h-9 rounded-full bg-[#D9E5DC] flex items-center justify-center text-[#1F2F28] font-semibold text-base">
                       {userStore.user?.fullName?.[0] ??
                         userStore.user?.username?.[0] ??
                         "U"}
                     </span>
-                    <span className="text-base text-[#1F2F28]">
+                    <span className="hidden text-base text-[#1F2F28] sm:inline">
                       {userStore.user?.fullName ??
                         userStore.user?.username ??
                         "User"}
@@ -162,22 +181,53 @@ const Header = () => {
                 </div>
               </div>
             ) : (
-              <div className="ml-auto flex items-center gap-x-3">
+              <div className="ml-auto flex flex-wrap items-center gap-2 sm:gap-3">
                 <Link
                   to={"/sign-in"}
-                  className="text-sm text-[#1F2F28] border border-[#1F2F28] rounded-full px-5 py-2 hover:bg-[#1F2F28] hover:text-white transition-colors"
+                  className="text-sm text-[#1F2F28] border border-[#1F2F28] rounded-full px-4 py-2 hover:bg-[#1F2F28] hover:text-white transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   to={"/sign-up"}
-                  className="text-sm text-white bg-[#1F2F28] rounded-full px-5 py-2 hover:bg-[#2A3D33] transition-colors"
+                  className="text-sm text-white bg-[#1F2F28] rounded-full px-4 py-2 hover:bg-[#2A3D33] transition-colors"
                 >
                   Sign Up
                 </Link>
               </div>
             )}
           </div>
+
+          {isMobileMenuOpen && (
+            <nav className="mt-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-3 lg:hidden">
+              <ul className="flex flex-col gap-2 text-sm font-medium">
+                <li>
+                  <Link
+                    to="/books"
+                    className="block rounded-xl px-3 py-2 hover:bg-[var(--surface-strong)]"
+                  >
+                    Books
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/authors"
+                    className="block rounded-xl px-3 py-2 hover:bg-[var(--surface-strong)]"
+                  >
+                    Authors
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/favorites"
+                    className="block rounded-xl px-3 py-2 hover:bg-[var(--surface-strong)]"
+                  >
+                    Favorites
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          )}
         </div>
       </header>
       {showLogoutConfirm && (

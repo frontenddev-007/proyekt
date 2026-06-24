@@ -100,6 +100,33 @@ function Sidebar({
   );
 }
 
+function MobileNav({
+  activeSection,
+  onSectionChange,
+}: {
+  activeSection: SectionId;
+  onSectionChange: (id: SectionId) => void;
+}) {
+  return (
+    <div className="flex gap-2 overflow-x-auto px-4 py-3 md:hidden">
+      {NAV_ITEMS.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          onClick={() => onSectionChange(item.id)}
+          className={`shrink-0 rounded-full px-3 py-2 text-sm font-medium ${
+            activeSection === item.id
+              ? "bg-green-100 text-green-800"
+              : "bg-white text-gray-700 shadow-sm"
+          }`}
+        >
+          {item.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function MainContent({ activeSection }: { activeSection: SectionId }) {
   const SECTION_MAP: Record<SectionId, JSX.Element> = {
     overview: <Overview />,
@@ -110,7 +137,7 @@ function MainContent({ activeSection }: { activeSection: SectionId }) {
   };
 
   return (
-    <main className="flex-1 p-8 bg-stone-50 min-h-screen overflow-y-auto">
+    <main className="flex-1 p-4 sm:p-6 lg:p-8 bg-stone-50 min-h-screen overflow-y-auto">
       {SECTION_MAP[activeSection]}
     </main>
   );
@@ -126,14 +153,20 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-[var(--bg)] font-sans">
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <Sidebar
           activeSection={activeSection}
           onSectionChange={setActiveSection}
           username={username}
           memberSince={memberSince}
         />
-        <MainContent activeSection={activeSection} />
+        <div className="flex-1">
+          <MobileNav
+            activeSection={activeSection}
+            onSectionChange={setActiveSection}
+          />
+          <MainContent activeSection={activeSection} />
+        </div>
       </div>
     </div>
   );

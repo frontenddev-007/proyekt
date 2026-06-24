@@ -121,7 +121,7 @@ const BooksPage = () => {
 
   return (
     <div className="bg-white">
-      <div className="container py-8">
+      <div className="container py-6 sm:py-8">
         <div className="mb-8">
           <label className="bg-[#FBF7F0] p-[12px_20px] rounded-[40px] flex items-center gap-3 w-full shadow-md">
             <Icon.searchIcon />
@@ -138,8 +138,8 @@ const BooksPage = () => {
           </label>
         </div>
 
-        <div className="flex gap-8">
-          <div className="w-48">
+        <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
+          <div className="w-full lg:w-48">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-lg font-bold text-[#1F2F28]">Filters</h3>
               <button
@@ -276,11 +276,11 @@ const BooksPage = () => {
           </div>
 
           <div className="flex-1">
-            <div className="flex justify-between items-center mb-8">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-8">
               <p className="text-sm text-[#6B7570]">
                 Showing 1-18 of {total || mockBooks.length} books
               </p>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                 <select
                   value={sortBy}
                   onChange={(e) => {
@@ -310,7 +310,7 @@ const BooksPage = () => {
             </div>
 
             {isPending && !books.length ? (
-              <div className="grid grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
                 {[...Array(12)].map((_, i) => (
                   <div
                     key={i}
@@ -319,15 +319,15 @@ const BooksPage = () => {
                 ))}
               </div>
             ) : isError ? (
-              <div className="col-span-4 text-center py-12">
+              <div className="col-span-full text-center py-12">
                 <p className="text-red-500 text-lg">Error loading books</p>
               </div>
             ) : displayedBooks.length === 0 ? (
-              <div className="col-span-4 text-center py-12">
+              <div className="col-span-full text-center py-12">
                 <p className="text-[#6B7570] text-lg">No books found</p>
               </div>
             ) : (
-              <div className="grid grid-cols-4 gap-6 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 mb-8">
                 {displayedBooks.map((book: any) => (
                   <div
                     key={book.id}
@@ -397,7 +397,7 @@ const BooksPage = () => {
               </div>
             )}
 
-            <div className="flex justify-center items-center gap-2">
+            <div className="flex flex-wrap justify-center items-center gap-2">
               <button
                 onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}

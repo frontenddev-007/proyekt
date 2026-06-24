@@ -20,11 +20,11 @@ const Authors = () => {
   }
 
   return (
-    <div className="bg-[#F8F5EE] min-h-screen py-12">
+    <div className="bg-[#F8F5EE] min-h-screen py-8 sm:py-12">
       <div className="container">
-        <div className="flex items-center justify-between mb-10">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-8 sm:mb-10">
           <div>
-            <h1 className="text-4xl font-serif font-bold text-[#1F2F28]">
+            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#1F2F28]">
               All Authors
             </h1>
             <p className="text-sm text-[#6B7570] mt-2 max-w-2xl">

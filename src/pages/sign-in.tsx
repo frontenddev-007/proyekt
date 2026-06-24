@@ -19,7 +19,7 @@ export interface IFormLogin {
 
 const SignIn = () => {
   const form = useForm<IFormLogin>();
-  const store = useUserStore()
+  const store = useUserStore();
   const { data, isPending, isSuccess, isError, mutateAsync } = useLogin();
   const navigate = useNavigate();
   const onSend = (formData: IFormLogin) => {
@@ -31,7 +31,7 @@ const SignIn = () => {
       const token: string = data?.data.token;
       const user: IUserResponse = data?.data.user;
       setItem(token);
-      store.setUser(user)
+      store.setUser(user);
       toast.success("you have logged in!!!");
       navigate("/");
     }
@@ -44,18 +44,20 @@ const SignIn = () => {
   }, [isError]);
 
   return (
-    <div className="flex h-screen">
-      <div className="sign-up-left flex items-center justify-center h-full w-[50%]">
+    <div className="flex min-h-screen flex-col lg:flex-row">
+      <div className="sign-up-left flex items-center justify-center min-h-[260px] w-full px-6 py-10 lg:h-full lg:w-[50%] lg:px-10 lg:py-0">
         <div className="flex flex-col items-center max-w-[320px]">
           <img width={100} height={100} src={BookImage} alt="book-image" />
-          <h2 className="text-white text-4xl mt-9 mb-3.5">Welcome Back</h2>
+          <h2 className="text-white text-3xl sm:text-4xl mt-9 mb-3.5">
+            Welcome Back
+          </h2>
           <p className="text-white opacity-75 text-center">
-          Discover your next favorite book from our
-           curated collection of timeless literature.
+            Discover your next favorite book from our curated collection of
+            timeless literature.
           </p>
         </div>
       </div>
-      <div className="h-full w-[50%] sign-up-right p-[60px_72px]">
+      <div className="w-full sign-up-right p-6 sm:p-10 lg:h-full lg:w-[50%] lg:p-[60px_72px]">
         <Link to="/" className="flex items-center gap-2">
           <Icon.leaf />
           <Icon.logo />
@@ -67,21 +69,21 @@ const SignIn = () => {
         >
           <p className="mt-3 mb-9">Sign in to your account</p>
           <Input
-            required = {true}
+            required={true}
             name="email"
             placeholder="john@gmail.com"
             type="email"
             form={form}
             label="Email"
           />
-            <Input
-              required = {true}
-              name="password"
-              placeholder="••••••••"
-              type="password"
-              form={form}
-              label="Password"
-            />{" "}
+          <Input
+            required={true}
+            name="password"
+            placeholder="••••••••"
+            type="password"
+            form={form}
+            label="Password"
+          />{" "}
           <Button type="submit" className="!bg-[#2A3D33]" isLoading={isPending}>
             Sign In
           </Button>

@@ -25,14 +25,14 @@ const Home = () => {
     <>
       <section className="pt-6 mt-4 bg-gradient-to-br from-[#2B4A3A] via-[#1F3A2C] to-[#0F2419]">
         <div className="container">
-          <div className="relative overflow-hidden pr-8 py-16 rounded-3xl min-h-85">
+          <div className="relative overflow-hidden px-4 py-8 sm:px-6 md:px-8 md:py-12 lg:py-16 rounded-[32px] min-h-[420px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div className="flex flex-col items-start">
+              <div className="flex flex-col items-start text-center md:text-left">
                 <span className="inline-flex items-center gap-1.5 bg-[#1F2F28]/60 text-[#FBF7F0] text-xs font-medium tracking-wider uppercase rounded-full px-3 py-1.5 mb-6">
                   <Icon.star />
                   Book of the Week
                 </span>
-                <h1 className="text-white text-4xl md:text-5xl leading-tight font-serif font-semibold mb-3">
+                <h1 className="text-white text-3xl sm:text-4xl md:text-5xl leading-tight font-serif font-semibold mb-3">
                   One Hundred Years <br /> of Solitude
                 </h1>
                 <p className="text-[#B8C5BD] text-sm mb-4">
@@ -44,7 +44,7 @@ const Home = () => {
                   conflict between the desire for solitude and the need for
                   love.
                 </p>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                   <button
                     type="button"
                     className="bg-[#E89B3C] hover:bg-[#d68a2c] transition-colors text-[#1F2F28] font-medium text-sm px-5 py-3 rounded-xl cursor-pointer"
@@ -53,7 +53,7 @@ const Home = () => {
                   </button>
                   <button
                     type="button"
-                    className="flex items-center gap-2 bg-white/5 hover:bg-white/10 transition-colors border border-white/10 text-[#FBF7F0] font-medium text-sm px-5 py-3 rounded-xl cursor-pointer"
+                    className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 transition-colors border border-white/10 text-[#FBF7F0] font-medium text-sm px-5 py-3 rounded-xl cursor-pointer"
                   >
                     <Icon.heart />
                     Add to Favorites
@@ -61,7 +61,7 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="flex justify-end">
+              <div className="flex justify-center md:justify-end">
                 <div className="relative w-[220px] h-[300px] rounded-xl bg-gradient-to-br from-[#C89968] to-[#9C7548] shadow-2xl flex items-center justify-center">
                   <div className="absolute inset-0 rounded-xl border border-[#B88858]/40"></div>
                   <div className="text-center px-4">
@@ -82,10 +82,10 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-12 sm:py-16">
         <div className="container">
-          <div className="flex items-end justify-between mb-8">
-            <h2 className="text-[#1F2F28] text-3xl md:text-4xl font-serif font-semibold">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-8">
+            <h2 className="text-[#1F2F28] text-2xl sm:text-3xl md:text-4xl font-serif font-semibold">
               New Arrivals
             </h2>
             <button
@@ -98,7 +98,7 @@ const Home = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
             {books.map((book) => (
               <div
                 key={book.id}
@@ -158,10 +158,10 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="pb-16">
+      <section className="pb-12 sm:pb-16">
         <div className="container">
-          <div className="flex items-end justify-between mb-8">
-            <h2 className="text-[#1F2F28] text-3xl md:text-4xl font-serif font-semibold">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-8">
+            <h2 className="text-[#1F2F28] text-2xl sm:text-3xl md:text-4xl font-serif font-semibold">
               Popular Authors
             </h2>
             <button
@@ -174,7 +174,7 @@ const Home = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {Array.isArray(authors) && authors.length > 0
               ? authors.slice(0, 6).map((author: any) => {
                   const initials = author.fullName
@@ -196,13 +196,16 @@ const Home = () => {
                     (author.id?.charCodeAt(0) || 0) % colors.length;
 
                   return (
-                    <div key={author.id} className="flex flex-col">
+                    <div
+                      key={author.id}
+                      className="flex flex-col items-center text-center"
+                    >
                       <button
                         type="button"
                         onClick={() => navigate(`/authors/${author.id}`)}
-                        className={`${colors[colorIndex]} w-24 h-24 rounded-full flex items-center justify-center mb-4 cursor-pointer hover:scale-105 transition-transform`}
+                        className={`${colors[colorIndex]} w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center mb-4 cursor-pointer hover:scale-105 transition-transform`}
                       >
-                        <span className="text-white font-serif text-2xl font-semibold">
+                        <span className="text-white font-serif text-xl sm:text-2xl font-semibold">
                           {initials}
                         </span>
                       </button>
@@ -220,13 +223,13 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="pb-16">
+      <section className="pb-12 sm:pb-16">
         <div className="container">
-          <h2 className="text-[#1F2F28] text-3xl md:text-4xl font-serif font-semibold mb-8">
+          <h2 className="text-[#1F2F28] text-2xl sm:text-3xl md:text-4xl font-serif font-semibold mb-8">
             Browse by Genre
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {genres.map((genre) => (
               <button
                 key={genre.id}
